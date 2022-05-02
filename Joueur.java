@@ -1,20 +1,19 @@
 public class Joueur{
 
-
-	public String nom;
-	public String prenom;
-  public int id;
+	private String nom;
+	private String prenom;
+	private int id;
 	
 	public Personne() {
 		this.nom = "";
 		this.prenom = "";
-    this.id = 0;
+    		this.id = 0;
 	}
 	
 	public Personne(String nom, String prenom, int id) {
 		this.nom = nom;
 		this.prenom = prenom;
-    this.id = id;
+    		this.id = id;
 	}
 	
 	public String getNom() {
@@ -25,9 +24,9 @@ public class Joueur{
 		return this.prenom;
 	}
   
-  public Int getId() {
-    return this.id;
-  }
+ 	 public Int getId() {
+    		return this.id;
+ 	}
 	
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -37,8 +36,9 @@ public class Joueur{
 		this.prenom = prenom;
 	}
 	
-  public void setId(int id) {
-    this.id = id
+  	public void setId(int id) {
+   		 this.id = id
+	}
 	
     	public String toString() {
 		return prenom + "\t" + nom;
