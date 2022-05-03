@@ -6,18 +6,20 @@ public class Joueur{
 	private String prenom;
 	private int id;
 
-	public Personne() {
+	//constructeurs
+	public Joueur() {
 		this.nom = "";
 		this.prenom = "";
     		this.id = 0;
 	}
 
-	public Personne(String nom, String prenom, int id) {
+	public Joueur(String nom, String prenom, int id) {
 		this.nom = nom;
 		this.prenom = prenom;
-    		this.id = id;
+    this.id = id;
 	}
 
+	//methodes
 	public String getNom() {
 		return this.nom;
 	}
@@ -26,7 +28,7 @@ public class Joueur{
 		return this.prenom;
 	}
 
- 	 public Int getId() {
+ 	 public int getId() {
     		return this.id;
  	}
 
@@ -39,7 +41,7 @@ public class Joueur{
 	}
 
   	public void setId(int id) {
-   		 this.id = id
+   		 this.id = id;
 	}
 
     	public String toString() {
@@ -51,7 +53,7 @@ public class Joueur{
 			return false;
 		}
 
-		Personne p = (Personne) o;
+		Joueur p = (Joueur) o;
 		return p.getNom().equals(this.getNom()) && p.getPrenom().equals(this.getPrenom());
 	}
 
