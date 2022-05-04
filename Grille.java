@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.lang.Math;
 public class Grille extends Carte{
 
-  //attributs
+  //ATTRIBUTS
   private int nbPaires;
   private int longueur;
   private int largeur ;
   private ArrayList<Carte> tab;
 
-  //constructeurs
+  //CONSTRUCTEURS
   Grille(){
     this.nbPaires = 0;
     this.longueur = 0;
@@ -19,8 +19,9 @@ public class Grille extends Carte{
   Grille(int nbPaires){
     this.nbPaires = nbPaires;
     int nbCartes = nbPaires*2;
-    int i = (int)Math.floor(Math.sqrt(nbCartes));
 
+    //calcule la taille de la grille
+    int i = (int)Math.floor(Math.sqrt(nbCartes));
     while(i!=1 && (nbCartes%i)!=0){
       i--;
     }
@@ -49,7 +50,7 @@ public class Grille extends Carte{
   }
 
 
-  //methodes
+  //METHODES
   public int getNbPaires(){
       return this.nbPaires;
   }
@@ -62,22 +63,23 @@ public class Grille extends Carte{
     return this.largeur;
   }
 
-
+  //recuperer la carte dans un tab[1..longueur][1..largeur]
   public Carte getCarte(int x, int y){
-    if ((0<x && x<this.longueur) && (0<y && y<this.largeur)){
+    if ((0<x && x<this.longueur+1) && (0<y && y<this.largeur+1)){
       return tab.get(this.longueur*(y-1)+x-1);
     }
     else {
-      return new Carte(-1, false);
+      return new Carte();
     }
   }
 
+  //recuperer la carte dans un tab[0..nbPaires*2-1]
   public Carte getCarte1D(int x){
     if (0<x && x<(this.nbPaires*2)){
         return tab.get(x);
     }
     else
-      return new Carte(-1, false);
+      return new Carte();
   }
 
 
@@ -91,12 +93,12 @@ public class Grille extends Carte{
   }
 
 
-  //test
+  //TESTS
   public static void main(String args[]){
     //variables a changer
     int nbPaires = 4;
-    int x = 1;
-    int y = 4;
+    int x = 4;
+    int y = 2;
 
     Grille a = new Grille(nbPaires);
 

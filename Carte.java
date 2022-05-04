@@ -1,12 +1,12 @@
 public class Carte{
 
-  //attributs
+  //ATTRIBUTS
   private int val;
   private boolean visible;
 
-  //constructeurs
+  //CONSTRUCTEURS
   Carte(){
-    this.val = 0;
+    this.val = -1;
     this.visible = false;
   }
 
@@ -15,7 +15,7 @@ public class Carte{
     this.visible = visible;
   }
 
-  //methodes
+  //METHODES
   public int getVal(){
     return this.val;
   }
