@@ -1,27 +1,27 @@
 public class Carte{
 
   //attributs
-  private int symbole;
+  private int val;
   private boolean visible;
 
   //constructeurs
   Carte(){
-    this.symbole = 0;
+    this.val = 0;
     this.visible = false;
   }
 
-  Carte(int symbole, boolean visible){
-    this.symbole = symbole;
+  Carte(int val, boolean visible){
+    this.val = val;
     this.visible = visible;
   }
 
   //methodes
-  public int getSymbole(){
-    return this.symbole;
+  public int getVal(){
+    return this.val;
   }
 
-  public void setSymbole(int symbole){
-    this.symbole = symbole;
+  public void setVal(int symbole){
+    this.val = val;
   }
 
   public boolean getVisible(){
@@ -37,6 +37,6 @@ public class Carte{
       return false;
     }
     Carte c = (Carte) o;
-    return c.getSymbole()==this.getSymbole() && c.getVisible() == this.getVisible();
+    return c.getVal()==this.getVal() && c.getVisible() == this.getVisible();
   }
 }
