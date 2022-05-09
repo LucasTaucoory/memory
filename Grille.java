@@ -96,7 +96,7 @@ public class Grille extends Carte{
   //TESTS
   public static void main(String args[]){
     //variables a changer
-    int nbPaires = 4;
+    int nbPaires = 18;
     int x = 4;
     int y = 2;
 
@@ -109,5 +109,9 @@ public class Grille extends Carte{
     a.afficherGrille();
     System.out.println("la valeur en x= "+x+" et y= "+y+" est : " + a.getCarte(x,y).getVal());
     System.out.println("la valeur en x= "+x+" avec le tab en 1D est : " + a.getCarte1D(x).getVal());
+
+    System.out.println(a.getCarte(1,1).getVisible());
+    a.getCarte(1,1).setVisible(true);
+    System.out.println(a.getCarte(1,1).getVisible());
   }
 }
