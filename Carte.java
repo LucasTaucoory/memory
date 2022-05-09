@@ -1,6 +1,6 @@
 public class Carte{
 
-  //ATTRIBUTS
+  //ATTRIBUTS ceci est un test venant de Mme. SOLATGES lol prout
   private int val;
   private boolean visible;
 
