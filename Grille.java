@@ -43,7 +43,7 @@ public class Grille extends Carte{
       //genere un entier aleatoire entre 0 et nbCartes-1
       int a = (int)Math.floor(Math.random()*c);
       if(a==c) a--;
-      Carte b = new Carte((int)tab_tmp.remove(a), false);
+      Carte b = new Carte((int)tab_tmp.remove(a), false, i%longueur+1,i/longueur+1);
       this.tab.add(b);
       c--;
     }
@@ -82,11 +82,19 @@ public class Grille extends Carte{
       return new Carte();
   }
 
+  public void setCarte(Carte c, int x, int y){
+    tab.set(this.longueur*(y-1)+x-1, c);
+  }
 
   public void afficherGrille(){
     for(int j=1;j<this.largeur+1;j++){
       for(int i=1;i<this.longueur+1;i++){
-        System.out.print(tab.get(this.longueur*(j-1)+i-1).getVal() + " ");
+        if(getCarte(i,j).getVisible() == true){
+          System.out.print(tab.get(this.longueur*(j-1)+i-1).getVal() + " ");
+        }
+        else {
+          System.out.print("# ");
+        }
       }
       System.out.println();
     }
@@ -113,5 +121,12 @@ public class Grille extends Carte{
     System.out.println(a.getCarte(1,1).getVisible());
     a.getCarte(1,1).setVisible(true);
     System.out.println(a.getCarte(1,1).getVisible());
+
+    Carte c = new Carte(1,true,1,2);
+    a.setCarte(c,1,2);
+    a.afficherGrille();
+    System.out.println(a.getCarte(1,4).getVal());
+    System.out.println(a.getCarte(1,4).getX());
+    System.out.println(a.getCarte(1,4).getY());
   }
 }

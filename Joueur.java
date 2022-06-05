@@ -2,50 +2,48 @@ public class Joueur{
 
 
 	//Attributs
-	private String nom;
-	private String prenom;
+	private String pseudo;
 	private int id;
+	private int score;
 
 	//constructeurs
 	public Joueur() {
-		this.nom = "";
-		this.prenom = "";
-    		this.id = 0;
+		this.pseudo = "";
+    this.id = 0;
+		this.score = 0;
 	}
 
-	public Joueur(String nom, String prenom, int id) {
-		this.nom = nom;
-		this.prenom = prenom;
+	public Joueur(String pseudo, int id, int score) {
+		this.pseudo = pseudo;
     this.id = id;
+		this.score = score;
 	}
 
 	//methodes
-	public String getNom() {
-		return this.nom;
+	public String getPseudo() {
+		return this.pseudo;
 	}
 
-	public String getPrenom() {
-		return this.prenom;
-	}
 
  	 public int getId() {
     		return this.id;
  	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public int getScore(){
+		return this.score;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
+
 
   	public void setId(int id) {
    		 this.id = id;
 	}
 
-    	public String toString() {
-		return prenom + "\t" + nom;
+	public void setScore(int score){
+		this.score = score;
 	}
 
 	public boolean equals(Object o) {
@@ -54,7 +52,7 @@ public class Joueur{
 		}
 
 		Joueur p = (Joueur) o;
-		return p.getNom().equals(this.getNom()) && p.getPrenom().equals(this.getPrenom());
+		return p.getPseudo().equals(this.getPseudo());
 	}
 
 }
