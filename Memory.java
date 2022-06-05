@@ -5,9 +5,8 @@ public class Memory {
   private Grille grille = new Grille(10);
   private int nbJoueurs;
   private ArrayList<Joueur> j;
-  private IA ia;
 
-  enum Mode{solo, multi, ia};
+  enum Mode{solo, multi};
   private Mode mode;
 
 
@@ -16,16 +15,14 @@ public class Memory {
     this.grille = new Grille(10);
     this.nbJoueurs = 1;
     this.j=new ArrayList<Joueur>();
-    this.ia=new IA();
     this.mode = Mode.solo;
   }
 
-  Memory(int nbPaires, Mode mode, int nbJoueurs, int difficulteIA){
+  Memory(int nbPaires, Mode mode, int nbJoueurs){
     this.grille = new Grille(nbPaires);
     this.mode = mode;
     this.nbJoueurs = nbJoueurs;
     this.j = new ArrayList<Joueur>();
-    this.ia = new IA(difficulteIA);
   }
 
   //méthodes
@@ -52,9 +49,9 @@ public class Memory {
       System.out.println("Entrer la position x (1 et "+ lon+ ") puis la position de y (1 et "+ larg+ ")");
       x= sc.nextInt();
       y= sc.nextInt();
+      c = this.grille.getCarte(x,y);
     }while((c.getVisible()==true)||((x<1)||(x>lon))||((y<1)||(y>larg)));
 
-    c = this.grille.getCarte(x,y);
     return c;
   }
 
@@ -66,13 +63,17 @@ public class Memory {
     System.out.println("Choix de la première carte");
     c1 = choix_carte();
 
+    grille.getCarte(c1.getX(), c1.getY()).setVisible(true);
+    System.out.println();
+    this.grille.afficherGrille();
+
     do{
       System.out.println("Choix de la deuxième carte");
       c2 = choix_carte();
     }
     while(c1.equals(c2) == true);
 
-    grille.getCarte(c1.getX(), c1.getY()).setVisible(true);
+
     grille.getCarte(c2.getX(), c2.getY()).setVisible(true);
 
     System.out.println();
@@ -90,10 +91,6 @@ public class Memory {
     return joueur;
   }
 
-  public void jouerIA(){
-
-  }
-
   public void initPartie(){
     Scanner sc = new Scanner(System.in);
 
@@ -101,16 +98,14 @@ public class Memory {
     System.out.println("Que voulez vous faire?");
     System.out.println("1 : joueur une partie solo");
     System.out.println("2 : joueur une partie à plusieurs");
-    System.out.println("3 : joueur une partie contre l'ia");
     int m;
     do {
       m = sc.nextInt();
-    } while ((m<1)||(m>3));
+    } while ((m<1)||(m>2));
 
     switch(m){
       case 1: this.mode = Mode.solo; break;
       case 2: this.mode = Mode.multi; break;
-      case 3: this.mode = Mode.ia; break;
     }
 
     sc.nextLine();
@@ -137,15 +132,6 @@ public class Memory {
         j.add(new Joueur(pseudo, i, 0));
       }
       break;
-
-      case ia:
-      int difficulte;
-      do {
-        System.out.println("entrer la difficulté de l'ordi (entre 1 et 10)");
-        difficulte = sc.nextInt();
-      } while ((difficulte<1)&&(difficulte>10));
-      this.ia = new IA(difficulte);
-      break;
     }
 
     int nbPaires;
@@ -167,7 +153,6 @@ public class Memory {
     int nbPairesRetournee = 0;
     int scoreJoueur;
     while(nbPairesRetournee != this.grille.getNbPaires()){
-      if ((mode == Mode.solo)||(mode == Mode.multi)){
         for (Joueur joueur : j){
           if (nbPairesRetournee != this.grille.getNbPaires()){
             clearScreen();
@@ -177,44 +162,20 @@ public class Memory {
 
             //met a jour le nombre de carte retournee
             nbPairesRetournee = nbPairesRetournee + joueur.getScore()-scoreJoueur;
-            System.out.println(nbPairesRetournee);
-          }
         }
       }
-
-
     }
+    clearScreen();
+    this.grille.afficherGrille();
+    System.out.println();
+    System.out.println("Bravo vous avez gagné !");
+    System.out.println();
+    afficherScores();
   }
 
 
   public static void main(String[] args){
     Memory m = new Memory();
-    //m.grille.afficherGrille();
-    /*Carte c = m.choix_carte();
-
-    System.out.println(m.grille.getCarte(1,1).getVisible());
-    m.grille.getCarte(1,1).setVisible(true);
-    System.out.println(m.grille.getCarte(1,1).getVisible());
-    */
-    /*int score = 0;
-    for(int i=0;i<5;i++){
-      score =m.jouerJoueur(score);
-    }
-    System.out.println(score);
-    */
-
     m.partie();
-
-    /*
-    System.out.println(m.grille.getCarte(5,1).getX());
-    System.out.println(m.grille.getCarte(5,1).getY());
-
-    for(int i=1;i<m.grille.getLargeur()+1;i++){
-      for(int j=1;j<m.grille.getLongueur()+1;j++){
-        System.out.println(m.grille.getCarte(j,i).getX());
-        System.out.println(m.grille.getCarte(j,i).getY());
-      }
-    }
-    */
   }
 }

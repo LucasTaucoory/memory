@@ -32,21 +32,25 @@ public class IA extends Joueur{
     return this.difficulte;
   }
 
-  public ArrayList<Carte> getMemoire(){
-    return this.memoire;
+  public void addCarte(Carte c){
+    if (2*difficulte <= memoire.size()){
+      memoire.remove(0);
+    }
+    memoire.add(c);
   }
 
-  public void enregistrement (Carte carte){
-    int n=this.memoire.size();
-    int p = 2*this.difficulte;
-    for (int i=Math.max(0,n-p);i<n;i++){
-      if (!memoire.get(i).equals(carte)){
-        memoire.add(carte);
+
+  public Carte autreCarte(Carte c){
+    for (Carte i : memoire){
+      if ((i.getVal() == c.getVal())
+      &&((i.getX() != c.getX())||(i.getY()!=i.getX()))){
+        return i;
       }
     }
-
+    return new Carte();
   }
 
+}
 //besoin de connaitre la position des cartes dans la grille
 //memoire doit stocker Cartes + position
 //l'IA retourne une carte sur la grille de manière aléatoire
@@ -56,4 +60,3 @@ public class IA extends Joueur{
 // avec une certaine probablilité
 //on retourne alors la deuxième aléatoirement.
 //on l'enregistre avec la probabilité
-}
